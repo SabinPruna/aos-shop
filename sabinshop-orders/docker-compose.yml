@@ -1,0 +1,18 @@
+version: '3'
+services:
+  payments:
+    image: "sabinshop/payments:latest"
+    ports:
+     - "8000:8000"
+  customers:
+    image: "sabinshop/customers:latest"
+    ports:
+     - "8080:8080"
+  orders:
+    image: "sabinshop/orders:latest"
+    ports:
+     - "9000:9000"
+     - "9001:9001"
+    environment:
+      CUSTOMERS_URL: http://customers:8080/sabinshop-customers-api-1.0.0-SNAPSHOT/v1
+      PAYMENTS_URL: http://payments:8000
